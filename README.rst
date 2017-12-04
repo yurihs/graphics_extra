@@ -25,6 +25,8 @@ Os objetos gráficos incluídos são:
 Examples/Exemplos
 =================
 
+Example 1: Drawing a rounded rectangle.
+
 .. code:: python
 
     import graphics
@@ -41,6 +43,8 @@ Examples/Exemplos
 
     rect.draw(win)
 
+
+Example 2: Writing text with a custom font face.
 
 .. code:: python
 
