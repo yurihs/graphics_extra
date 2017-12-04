@@ -25,7 +25,7 @@ Os objetos gráficos incluídos são:
 Examples/Exemplos
 =================
 
-.. code: python
+.. code:: python
 
     import graphics
     from graphics_extra import RoundedRectangle
@@ -41,7 +41,7 @@ Examples/Exemplos
 
     rect.draw(win)
 
-.. code: python
+.. code:: python
 
     import graphics
     import tkinter.font
