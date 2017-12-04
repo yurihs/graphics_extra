@@ -41,6 +41,7 @@ Examples/Exemplos
 
     rect.draw(win)
 
+
 .. code:: python
 
     import graphics
