@@ -1,8 +1,7 @@
 graphics.py-extra
 =================
 
-This package provides greater possibilities for drawing shapes with the
-graphics.py_ package.
+This package provides more shapes to draw with the graphics.py_ package.
 
 The included graphics objects are:
 
