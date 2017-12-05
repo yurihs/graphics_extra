@@ -24,6 +24,11 @@ setup(
     license="MIT",
     zip_safe=False,
     classifiers=[
-        "Programming Language :: Python :: 3"
+        "Programming Language :: Python :: 3 :: Only",
+        "License :: OSI Approved :: MIT License",
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "Natural Language :: Portuguese (Brazilian)",
+        "Topic :: Multimedia :: Graphics"
     ]
 )
