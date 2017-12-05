@@ -4,6 +4,9 @@ graphics.py-extra
 .. image:: http://img.shields.io/pypi/v/graphics.py-extra.svg
     :target: https://pypi.python.org/pypi/graphics.py-extra
 
+.. image:: https://img.shields.io/github/last-commit/yurihs/graphics_extra.svg
+    :target: https://github.com/yurihs/graphics_extra/
+
 
 Esse pacote fornece mais formas para se desenhar com o pacote
 graphics.py_.
