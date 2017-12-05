@@ -3,17 +3,17 @@ import graphics
 
 class RoundedRectangle(graphics._BBox):
     """
-    Draws a rectangle with rounded corners.
-    Based on https://wiki.tcl.tk/1416
+    Desenha um retângulo com cantos arredondados.
+    Baseado em ttps://wiki.tcl.tk/1416
 
-    Using the given corners and radius,
-    calculates the vertices of a polygon equivalent to a rounded rectangle,
-    and then uses a Tk/Tcl (?) function to draw the polygon smoothly.
+    Usando os cantos e o raio dados,
+    calcula os vértices de um polígono equivalente à um retângulo arredondado,
+    e então usa uma função Tk/Tcl (?) para desenhá-lo suavemente.
 
-    Parameters:
-        p1: upper left corner of the rectangle
-        p2: lower right corner of the rectangle
-        radius: size of the corners (max: 3/8 the size of the smallest side)
+    Parâmetros:
+        p1: canto superior esquerdo do retângulo
+        p2: canto inferior direito do retângulo
+        radius: tamanho dos cantos (máximo: 3/8 do comprimento do menor lado do retângulo)
     """
     def __init__(self, p1: graphics.Point, p2: graphics.Point, radius: int):
         super().__init__(p1, p2)
@@ -24,44 +24,44 @@ class RoundedRectangle(graphics._BBox):
 
     def _draw(self, canvas: graphics.GraphWin, options: dict):
         print(type(canvas), type(options))
-        # Converts the corner coordinates to (real) screen pixel values
+        # Converte as coordenadas dos cantos para medidas reais de pixels na tela
         x1, y1 = canvas.toScreen(self.p1.x, self.p1.y)
         x2, y2 = canvas.toScreen(self.p2.x, self.p2.y)
 
-        # Arguments passed to tkinter.Canvas.
-        # Starting with the canvas that's being used.
+        # Argumentos passados ao tkinter.Canvas.
+        # Começando com o canvas em que está sendo operado.
         args = [canvas]
 
         diameter = 2 * self.radius
 
-        # The radius can have at most 3/8 the size of the smallest side of the
-        # rectangle, due to a limitation ok Tk/Tcl.
+        # O raio pode ter no máximo 3/8 do tamanho do menor lado do retângulo,
+        # devido a uma limitação do Tk/Tcl.
         # 2 * (3/8) = 6/8 = 3/4 = 0.75
-        # (I haven't understood this part very well)
+        # (Eu não entendi essa parte muito bem)
         maxr = 0.75
         if diameter > (maxr * (x2 - x1)):
             diameter = maxr * (x2 - x1)
         if diameter > (maxr * (y2 - y1)):
             diameter = maxr * (y2 - y1)
 
-        # Calculates 12 points that outline the rectangle,
-        # off of the two given corners.
+        # Calcula os 12 pontos que contornam o retângulo,
+        # com base nos dois cantos dados.
         #
         # A---c--------c---B \
-        # |                |  } diameter
+        # |                |  } diâmetro
         # c                c /
         # |                |
         # |                |
         # |                |
         # c                c \
-        # |                |  } diameter
+        # |                |  } diâmetro
         # B---c--------c---A /
-        # Caption:
-        # A - the two given corners
-        # B - the other two corners
-        # c - guide points for the Tk/Tcl smoothing process
+        # Legenda:
+        # A - os dois cantos dados
+        # B - os outros dois cantos do retângulo
+        # c - pontos de guia para o processo de suavização do Tk/Tcl
         #
-        # An example of how a corner will be drawn:
+        # Um exemplo de como um canto será desenhado:
         #
         #               |                         |
         #               |                         |
@@ -90,10 +90,10 @@ class RoundedRectangle(graphics._BBox):
             x1, b1,  # c8
             '-smooth', '1'
         ])
-        # The '-smooth 1' command activates the smoothing mode,
-        # which is critical for the rounded corners to appear.
+        # O comando '-smooth 1' ativa o modo de suavização,
+        # que é essencial para o funcionamento dos cantos arredondados.
 
-        # Other options inherited from graphics or from tkinter.Canvas
+        # Outras opções herdadas do graphics ou do tkinter.Canvas
         args.append(options)
 
         return graphics.GraphWin.create_polygon(*args)

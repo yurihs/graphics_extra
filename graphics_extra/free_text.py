@@ -5,17 +5,18 @@ from typing import Optional, Tuple
 
 class FreeText(graphics.Text):
     """
-    Draws text, without font restrictions.
-    The default graphics object restricts, for some reason,
-    the font families, styles, and sizes that can be used.
+    Desenha texto, sem restrição de fontes.
+    O objeto do graphics padrão restringe, por algum motivo,
+    as famílias, estilos, e tamanhos de fontes que podem ser usadas.
 
-    Adds arguments to change the font at initialization.
-    Adds methods to set the alignment and aligns to the left by default.
+    Adiciona argumentos para mudar a fonte na inicialização.
+    Adiciona métodos para mudar o alinhamento do texto,
+    e a linha à esquerda por padrão.
 
-    Parameters:
-        corner: reference point for the positioning of the text
-        text: the characters to be displayed
-        font: the font to be used
+    Parâmetros:
+        corner: ponto de referência para o posicionamento do texto
+        text: os caracteres a serem mostrados
+        font: a fonte a ser usada
     """
     def __init__(self, corner: graphics.Point, text: str, font: Optional[TkFont] = None):
         super().__init__(corner, text)
@@ -47,14 +48,13 @@ class FreeText(graphics.Text):
 
     def setAlignment(self, new_alignment: str):
         """
-        Changes the text's aligment (internally called the anchor)
+        Muda o alinhamento do texto (internamente chamado de modo de âncora/anchor).
 
-        Arguments:
+        Argumentos:
             new_alignment: aceita siglas dos pontos cardinais, ou 'CENTER'
-                           accepts compass points, or 'CENTER'
-                              N = north = top, middle
-                              NW = northwest = top, left
-                              uppercase or lowercase characters.
+                              N = norte = acima, meio
+                              NW = noroeste = acima, esquerda
+                              aceita caracteres maiúsculos e minúsculos.
         """
         valid_alignments = [
             'NW', 'N',      'NE',
@@ -62,30 +62,30 @@ class FreeText(graphics.Text):
             'SW', 'S',      'SE'
         ]
         if new_alignment.upper() in valid_alignments:
-            # Internally, only lowercase values are allowed
+            # Internamente, somente valores minúsculos são aceitos.
             self.config['anchor'] = new_alignment.lower()
         else:
             raise ValueError('Invalid alignment.')
 
     def getBounds(self, window: graphics.GraphWin) -> Tuple[int, int, int, int]:
         """
-        Calculates the corners of a bounding box that surrounds the text.
+        Calcula os cantos de uma bounding box ao redor do texto.
 
-        Arguments:
-            window: needed to temporarily draw the text
+        Argumentos:
+            window: necessária para desenhar o texto temporariamente
 
-        Returns:
-            tuple containg the coordinates of the
-            (1) top left and (2) bottom right corners
+        Retorna:
+            tupla contento as coordenadas dos cantos
+            (1) acima, esquerdo e (2) abaixo, direito
             (x1, y1, x2, y2)
         """
         if self.id is not None:
-            # The text is already drawn.
-            # All we need to do is to create a bounding box around it.
+            # O texto já está desenhado.
+            # Só precisamos criar a bouding box ao redor dele.
             bounds = window.bbox(self.id)
         else:
-            # The text isn't drawn as of yet.
-            # We need to draw it temporarily, so that we can create a 'bbox'
+            # O texto ainda não está desenhado.
+            # Nós precisamos desenhá-lo temporariamente, para criar a bounding box.
 
             previous_tag = self.config.get('tag', None)
             self.config['tag'] = 'getting_width'
@@ -98,26 +98,26 @@ class FreeText(graphics.Text):
 
     def getWidth(self, window: graphics.GraphWin) -> int:
         """
-        Calculates the width taken up by the text.
+        Calcula a largura ocupada pelo texto.
 
-        Arguments:
-            window: needed to temporarily draw the text
+        Argumentos:
+            window: necessária para desenhar o texto temporariamente
 
-        Returns:
-            width
+        Retorna:
+            largura
         """
         bounds = self.getBounds(window)
         return bounds[2] - bounds[0]
 
     def getHeight(self, window: graphics.GraphWin) -> int:
         """
-        Calculates the height taken up by the text.
+        Calcula a altura ocupada pelo texto.
 
-        Arguments:
-            window: needed to temporarily draw the text
+        Argumentos:
+            window: necessária para desenhar o texto temporariamente
 
-        Returns:
-            height
+        Retorna:
+            altura
         """
         bounds = self.getBounds(window)
         return bounds[3] - bounds[1]
