@@ -1,16 +1,11 @@
 graphics.py-extra
 =================
 
-This package provides more shapes to draw with the graphics.py_ package.
+.. image:: http://img.shields.io/pypi/v/graphics.py-extra.svg
+    :target: https://pypi.python.org/pypi/graphics.py-extra
 
-The included graphics objects are:
-
-- ``RoundedRectangle`` (a rectangle with rounded corners)
-- ``FreeText`` (write text without font limitations)
-
-------------
-
-*(Portuguese)*
+.. image:: https://img.shields.io/github/last-commit/yurihs/graphics_extra.svg
+    :target: https://github.com/yurihs/graphics_extra/
 
 Esse pacote fornece mais formas para se desenhar com o pacote
 graphics.py_.
@@ -20,18 +15,17 @@ Os objetos gráficos incluídos são:
 - ``RoundedRectangle`` (um retângulo com os cantos arredondados)
 - ``FreeText`` (desenhar texto sem limites sobre a fonte usada)
 
+Exemplos
+========
 
-Examples/Exemplos
-=================
-
-Example 1: Drawing a rounded rectangle.
+Exemplo 1: Desenhar um retângulo com os cantos arredondados.
 
 .. code:: python
 
     import graphics
     from graphics_extra import RoundedRectangle
 
-    win = graphics.GraphWin('Example for RoundedRectangle', 400, 300)
+    win = graphics.GraphWin('Exemplo do RoundedRectangle', 400, 300)
 
     rect = RoundedRectangle(
         graphics.Point(50, 50),
@@ -43,7 +37,7 @@ Example 1: Drawing a rounded rectangle.
     rect.draw(win)
 
 
-Example 2: Writing text with a custom font face.
+Exemplo 2: Mostrar texto com uma fonte qualquer.
 
 .. code:: python
 
@@ -51,15 +45,15 @@ Example 2: Writing text with a custom font face.
     import tkinter.font
     from graphics_extra import FreeText
 
-    win = graphics.GraphWin('Example for FreeText', 400, 300)
+    win = graphics.GraphWin('Exemplo do FreeText', 400, 300)
 
     open_sans_font = tkinter.font.Font(family='Open Sans', weight='normal', size=46)
     txt = FreeText(graphics.Point(200, 150), 'Lorem ipsum', open_sans_font)
 
-    # txt.setAlignment('SW')  # (the default in FreeText)
-    txt.setAlignment('CENTER')  # (the default in graphics.Text)
+    # txt.setAlignment('SW')  # esse é o padrão do FreeText
+    txt.setAlignment('CENTER')  # esse é o padrão do graphics.Text
 
-    # Show the space that the text will take up
+    # Mostrar o espaço (largura, altura) que o texto ocupará
     print('Text width:', txt.getWidth(win))
     print('Text height:', txt.getHeight(win))
 
