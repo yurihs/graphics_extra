@@ -1,5 +1,5 @@
 import graphics
-
+from typing import Optional
 
 class RoundedRectangle(graphics._BBox):
     """
@@ -14,10 +14,15 @@ class RoundedRectangle(graphics._BBox):
         p1: canto superior esquerdo do retângulo
         p2: canto inferior direito do retângulo
         radius: tamanho dos cantos (máximo: 3/8 do comprimento do menor lado do retângulo)
+                por padrão é o máximo possível.
     """
-    def __init__(self, p1: graphics.Point, p2: graphics.Point, radius: int):
+    def __init__(self, p1: graphics.Point, p2: graphics.Point, radius: Optional[int] = None):
         super().__init__(p1, p2)
-        self.radius = radius
+        if radius is None:
+            # Padrão: máximo
+            self.radius = (3/8) * self.comprimento_do_menor_lado()
+        else:
+            self.radius = radius
 
     def __repr__(self):
         return "RoundedRectangle({}, {}, r={})".format(self.p1, self.p2, self.radius)
@@ -97,6 +102,12 @@ class RoundedRectangle(graphics._BBox):
         args.append(options)
 
         return graphics.GraphWin.create_polygon(*args)
+
+    def comprimento_do_menor_lado(self) -> int:
+        return min(
+            abs(self.p1.getX() - self.p2.getX()),
+            abs(self.p1.getY() - self.p2.getY())
+        )
 
     def clone(self):
         other = RoundedRectangle(self.p1, self.p2, self.radius)
