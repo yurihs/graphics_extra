@@ -60,7 +60,7 @@ Exemplos
 
     txt.draw(win)
 
-**Exemplo 3:** Desenhar um triânglo isosceles agudo.
+**Exemplo 3:** Desenhar um triânglo isósceles agudo.
 
 .. code:: python
 
