@@ -14,11 +14,12 @@ Os objetos gráficos incluídos são:
 
 - ``RoundedRectangle`` (um retângulo com os cantos arredondados)
 - ``FreeText`` (desenhar texto sem limites sobre a fonte usada)
+- ``Triangle`` (triângulo de qualquer tipo: definido pelas medidas dos lados e ângulos)
 
 Exemplos
 ========
 
-Exemplo 1: Desenhar um retângulo com os cantos arredondados.
+**Exemplo 1:** Desenhar um retângulo com os cantos arredondados.
 
 .. code:: python
 
@@ -37,7 +38,7 @@ Exemplo 1: Desenhar um retângulo com os cantos arredondados.
     rect.draw(win)
 
 
-Exemplo 2: Mostrar texto com uma fonte qualquer.
+**Exemplo 2:** Mostrar texto com uma fonte qualquer.
 
 .. code:: python
 
@@ -58,5 +59,24 @@ Exemplo 2: Mostrar texto com uma fonte qualquer.
     print('Text height:', txt.getHeight(win))
 
     txt.draw(win)
+
+**Exemplo 3:** Desenhar um triânglo isosceles agudo.
+
+.. code:: python
+
+    import math
+    import graphics
+    from graphics_extra import Triangle
+
+    win = graphics.GraphWin('Exemplo do Triangle', 400, 300)
+
+    t = Triangle(
+        graphics.Point(125, 200) , # Posição do vértice B
+        angle_a=math.radians(55),  # Ângulo do vértice A (converter de graus para radianos)
+        angle_b=math.radians(55),  # Ângulo do vértice B (converter de graus para radianos)
+        side_c=150  # Comprimento do lado C
+    )
+    t.draw(win)
+
 
 .. _graphics.py: https://pypi.python.org/pypi/graphics.py/
