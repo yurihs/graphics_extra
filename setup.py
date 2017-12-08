@@ -3,7 +3,8 @@ from setuptools import setup
 version = "0.0.6"
 
 requirements = [
-    "graphics.py"
+    "graphics.py",
+    "trianglesolver"
 ]
 
 with open("README.rst") as file:
