@@ -7,6 +7,11 @@ requirements = [
     "trianglesolver"
 ]
 
+dev_requirements = [
+    "sphinx",
+    "sphinx-autobuild"
+]
+
 with open("README.rst") as file:
     readme = file.read()
 
@@ -22,6 +27,9 @@ setup(
     include_package_data=True,
     python_requires=">=3",
     install_requires=requirements,
+    extra_requires={
+        'dev': dev_requirements
+    },
     license="MIT",
     zip_safe=False,
     classifiers=[
