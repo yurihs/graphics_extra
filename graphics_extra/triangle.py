@@ -10,40 +10,43 @@ Measurements = namedtuple(
 )
 
 class Triangle(graphics.GraphicsObject):
-    """
-    Desenha um triangulo, conforme os dados fornecidos.
+    """Desenha um triangulo, conforme os dados fornecidos.
 
-    É NECESSÁRIO FORNECER AO MENOS 3 das seguintes medidas para definir um
-    triângulo válido.
-    SIDE (a, b, c): Comprimento dos lados
-    ANGLE (a, b, c): Ângulos internos (EM RADIANOS)
+    **É necessário fornecer ao menos 3 das seguintes medidas para definir um
+    triângulo válido.**
+
+    SIDE (a, b, c): Comprimento dos lados.
+
+    ANGLE (a, b, c): Ângulos internos **(em radianos)**.
 
     O posicionamento do triângulo é definido pela posição do vértice (vertex) B.
 
-            C
-            |\
-            | \
-            |  \
-            |   \
-     side_a |    \ side_b
-            |     \
-            |      \
-            |_______\
-           B  side_c  A
+    ::
 
-    Parametros:
+               C
+               |\\
+               | \\
+               |  \\
+               |   \\
+        side_a |    \\ side_b
+               |     \\
+               |      \\
+               |_______\\
+              B  side_c  A
+
+
+    Args:
         vertex_b: Vértice b. Define a posição do triângulo na tela.
-                  Os outros vértice serão calculados automaticamente,
-                  e só podem ser mudados indiretamente, ao alterar as outras
-                  medidas do triângulo.
-        data: AO MENOS 3 das medidas necessárias para definir um triângulo
-              (comprimento dos lados ou angulos internos EM RADIANOS).
-              Qualquer desses: lado_a, lado_b, lado_c,
-                               angulo_a, angulo_b, angulo_c
+            Os outros vértice serão calculados automaticamente,
+            e só podem ser mudados indiretamente, ao alterar as outras
+            medidas do triângulo.
+        data: **Ao menos 3** das medidas necessárias para definir um triângulo
+            (comprimento dos lados ou angulos internos **em radianos**).
+            Qualquer desses: lado_a, lado_b, lado_c, angulo_a, angulo_b, angulo_c.
 
 
     """
-    def __init__(self, vertex_b: graphics.Point, **data):
+    def __init__(self, vertex_b: graphics.Point, **data: int):
         super().__init__(options=["outline", "width", "fill"])
         self.vertex_b = vertex_b
         # Dados serão processados depois, para completar as medidas do triângulo
@@ -73,9 +76,9 @@ class Triangle(graphics.GraphicsObject):
 
     @property
     def measurements(self) -> Measurements:
-        """
-        Calcular as medidas absolutas do triângulo,
+        """Calcular as medidas absolutas do triângulo,
         a partir dos dados incompletos fornecidos.
+
         """
         a, b, c, aA, aB, aC = trianglesolver.solve(
             a=self._data.get('side_a'),
@@ -91,8 +94,10 @@ class Triangle(graphics.GraphicsObject):
 
     @property
     def vertex_a(self) -> graphics.Point:
-        """
-        Calcular a posiçao do vértice A, partindo do vértice B (linha reta).
+        """Posição do vértice A.
+
+        Calculada partindo do vértice B (linha reta).
+
         """
         return graphics.Point(
             self.vertex_b.getX() + self.measurements.side_c,
@@ -101,8 +106,10 @@ class Triangle(graphics.GraphicsObject):
 
     @property
     def vertex_c(self) -> graphics.Point:
-        """
-        Calcular a posição do vértice C, partindo do vértice B.
+        """Posição do vértice C.
+
+        Calculada partindo do vértice B.
+
         Fórmula de: https://stackoverflow.com/a/1571322
         """
         return graphics.Point(
@@ -112,7 +119,6 @@ class Triangle(graphics.GraphicsObject):
 
     @property
     def vertices(self) -> Tuple[graphics.Point, graphics.Point, graphics.Point]:
-        """
-        Retorna os três vértices do triângulo, que o definem absolutamente.
+        """Os três vértices do triângulo, que o definem absolutamente.
         """
         return (self.vertex_a, self.vertex_b, self.vertex_c)

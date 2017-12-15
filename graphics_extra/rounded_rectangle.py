@@ -2,19 +2,20 @@ import graphics
 from typing import Optional
 
 class RoundedRectangle(graphics._BBox):
-    """
-    Desenha um retângulo com cantos arredondados.
-    Baseado em ttps://wiki.tcl.tk/1416
+    """Desenha um retângulo com cantos arredondados.
+
+    Baseado em https://wiki.tcl.tk/1416
 
     Usando os cantos e o raio dados,
     calcula os vértices de um polígono equivalente à um retângulo arredondado,
     e então usa uma função Tk/Tcl (?) para desenhá-lo suavemente.
 
-    Parâmetros:
-        p1: canto superior esquerdo do retângulo
-        p2: canto inferior direito do retângulo
-        radius: tamanho dos cantos (máximo: 3/8 do comprimento do menor lado do retângulo)
-                por padrão é o máximo possível.
+    Args:
+        p1: Canto superior esquerdo do retângulo.
+        p2: Canto inferior direito do retângulo.
+        radius: Tamanho dos cantos
+            (máximo: 3/8 do comprimento do menor lado do retângulo).
+            Por padrão é o máximo possível.
     """
     def __init__(self, p1: graphics.Point, p2: graphics.Point, radius: Optional[int] = None):
         super().__init__(p1, p2)

@@ -4,8 +4,8 @@ from typing import Optional, Tuple
 
 
 class FreeText(graphics.Text):
-    """
-    Desenha texto, sem restrição de fontes.
+    """Desenha texto, sem restrição de fontes.
+
     O objeto do graphics padrão restringe, por algum motivo,
     as famílias, estilos, e tamanhos de fontes que podem ser usadas.
 
@@ -13,10 +13,10 @@ class FreeText(graphics.Text):
     Adiciona métodos para mudar o alinhamento do texto,
     e a linha à esquerda por padrão.
 
-    Parâmetros:
-        corner: ponto de referência para o posicionamento do texto
-        text: os caracteres a serem mostrados
-        font: a fonte a ser usada
+    Args:
+        corner: Ponto de referência para o posicionamento do texto.
+        text: Os caracteres a serem mostrados.
+        font: A fonte a ser usada.
     """
     def __init__(self, corner: graphics.Point, text: str, font: Optional[TkFont] = None):
         super().__init__(corner, text)
@@ -47,14 +47,18 @@ class FreeText(graphics.Text):
         self._reconfig("font", (face, size, new_style))
 
     def setAlignment(self, new_alignment: str):
-        """
-        Muda o alinhamento do texto (internamente chamado de modo de âncora/anchor).
+        """Muda o alinhamento do texto.
 
-        Argumentos:
-            new_alignment: aceita siglas dos pontos cardinais, ou 'CENTER'
-                              N = norte = acima, meio
-                              NW = noroeste = acima, esquerda
-                              aceita caracteres maiúsculos e minúsculos.
+        Internamente, o alinhamento é chamado de modo de âncora/anchor.
+
+        Args:
+            new_alignment: Aceita siglas dos pontos cardinais, ou 'CENTER'.
+                N = norte = acima, meio;
+                NW = noroeste = acima, esquerda.
+                Aceita caracteres maiúsculos e minúsculos.
+
+        Raises:
+            ValueError: Um alinhamento inválido foi fornecido.
         """
         valid_alignments = [
             'NW', 'N',      'NE',
@@ -68,16 +72,16 @@ class FreeText(graphics.Text):
             raise ValueError('Invalid alignment.')
 
     def getBounds(self, window: graphics.GraphWin) -> Tuple[int, int, int, int]:
-        """
-        Calcula os cantos de uma bounding box ao redor do texto.
+        """Calcula os cantos de uma bounding box ao redor do texto.
 
-        Argumentos:
-            window: necessária para desenhar o texto temporariamente
+        Args:
+            window: Necessária para desenhar o texto temporariamente.
 
-        Retorna:
-            tupla contento as coordenadas dos cantos
+        Returns:
+            Tupla contendo as coordenadas dos cantos
             (1) acima, esquerdo e (2) abaixo, direito
             (x1, y1, x2, y2)
+
         """
         if self.id is not None:
             # O texto já está desenhado.
@@ -97,27 +101,27 @@ class FreeText(graphics.Text):
         return bounds
 
     def getWidth(self, window: graphics.GraphWin) -> int:
-        """
-        Calcula a largura ocupada pelo texto.
+        """Calcula a largura ocupada pelo texto.
 
-        Argumentos:
-            window: necessária para desenhar o texto temporariamente
+        Args:
+            window: Necessária para desenhar o texto temporariamente.
 
-        Retorna:
-            largura
+        Returns:
+            A largura.
+
         """
         bounds = self.getBounds(window)
         return bounds[2] - bounds[0]
 
     def getHeight(self, window: graphics.GraphWin) -> int:
-        """
-        Calcula a altura ocupada pelo texto.
+        """Calcula a altura ocupada pelo texto.
 
-        Argumentos:
-            window: necessária para desenhar o texto temporariamente
+        Args:
+            window: Necessária para desenhar o texto temporariamente.
 
-        Retorna:
-            altura
+        Returns:
+            A altura.
+
         """
         bounds = self.getBounds(window)
         return bounds[3] - bounds[1]
