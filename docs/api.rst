@@ -1,19 +1,24 @@
 API
 ===
 
-
-The graphics_extra module provides the following functions on module-level.
-
 .. automodule:: graphics_extra
 
+RoundedRectangle
+----------------
 
 .. autoclass:: RoundedRectangle
     :members:
 
 
+FreeText
+--------
+
 .. autoclass:: FreeText
     :members:
 
+
+Triangle
+--------
 
 .. autoclass:: Triangle
     :members:

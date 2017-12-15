@@ -21,5 +21,3 @@ Conteúdo
     instalacao
     quickstart
     api
-
-
