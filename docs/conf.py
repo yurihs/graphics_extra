@@ -34,7 +34,7 @@ import sys
 
 # Fixes ReadTheDocs build (no display there, tkinter errors out)
 import mock
-MOCK_MODULES = ['tkinter', '_tkinter']
+MOCK_MODULES = ['tkinter.font', '_tkinter']
 for mod_name in MOCK_MODULES:
     sys.modules[mod_name] = mock.Mock()
 
