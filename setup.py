@@ -8,6 +8,7 @@ requirements = [
 ]
 
 dev_requirements = [
+    "mock",
     "sphinx",
     "sphinx-autobuild",
     "sphinx-autodoc-napoleon-typehints"
