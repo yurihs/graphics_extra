@@ -36,7 +36,7 @@ import sys
 import mock
 MOCK_MODULES = ['tkinter.font', '_tkinter']
 for mod_name in MOCK_MODULES:
-    sys.modules[mod_name] = mock.Mock()
+    sys.modules[mod_name] = mock.MagicMock()
 
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'sphinx_autodoc_napoleon_typehints']
 
