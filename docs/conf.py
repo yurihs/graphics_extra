@@ -33,7 +33,10 @@
 # ones.
 
 # Fixes ReadTheDocs build (no display there, tkinter errors out)
-autodoc_mock_imports = ['_tkinter']
+import mock
+MOCK_MODULES = ['tkinter', '_tkinter']
+for mod_name in MOCK_MODULES:
+    sys.modules[mod_name] = mock.Mock()
 
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'sphinx_autodoc_napoleon_typehints']
 
