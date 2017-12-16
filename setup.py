@@ -10,8 +10,7 @@ requirements = [
 dev_requirements = [
     "mock",
     "sphinx",
-    "sphinx-autobuild",
-    "sphinx-autodoc-napoleon-typehints"
+    "sphinx-autobuild"
 ]
 
 with open("README.rst") as file:

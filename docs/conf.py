@@ -18,7 +18,7 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 # import os
-import sys
+# import sys
 # sys.path.insert(0, os.path.abspath('..'))
 
 
@@ -32,13 +32,8 @@ import sys
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 
-# Fixes ReadTheDocs build (no display there, tkinter errors out)
-import mock
-MOCK_MODULES = ['tkinter.font', '_tkinter']
-for mod_name in MOCK_MODULES:
-    sys.modules[mod_name] = mock.MagicMock()
 
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'sphinx_autodoc_napoleon_typehints']
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon']
 
 
 # Add any paths that contain templates here, relative to this directory.
