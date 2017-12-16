@@ -1,7 +1,7 @@
 API
 ===
 
-.. automodule:: graphics_extra
+.. module:: graphics_extra
 
 RoundedRectangle
 ----------------
